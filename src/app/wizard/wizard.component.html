@@ -33,11 +33,23 @@
           <div class="row">
             <div class="col-5">
               <label for="senderCity">City : </label> <input class="form-control" name="senderCity"
-                formControlName="senderCity" type="text">
+                formControlName="senderCity" type="text"
+                [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderCity.touched &&wizService.senderDetails.controls.senderCity.errors }">
+              <div
+                *ngIf="wizService.senderDetails.controls.senderCity.touched &&wizService.senderDetails.controls.senderCity.errors"
+                class="invalid-feedback">
+                This Field is Required
+              </div>
             </div>
             <div class="col-3">
               <label for="senderState">State : </label> <input class="form-control" name="senderState"
-                formControlName="senderState" type="text">
+                formControlName="senderState" type="text"
+                [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderState.touched &&wizService.senderDetails.controls.senderState.errors }">
+              <div
+                *ngIf="wizService.senderDetails.controls.senderState.touched &&wizService.senderDetails.controls.senderState.errors"
+                class="invalid-feedback">
+                This Field is Required
+              </div>
             </div>
             <div class="col-4"> <label for="senderZip">Zip : </label> <input class="form-control" name="senderZip"
                 formControlName="senderZip" type="text"></div>

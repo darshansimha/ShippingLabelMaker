@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WizardModule } from './wizard/wizard.component';
+import { FormDataGetterComponent } from './form-data-getter/form-data-getter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormDataGetterComponent
   ],
   imports: [
     WizardModule
