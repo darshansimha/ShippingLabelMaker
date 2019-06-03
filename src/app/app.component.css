@@ -1,0 +1,10 @@
+#shippingLabelMakerWrapper{
+    width: 56%;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+#shippingLabelMakerWrapper h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

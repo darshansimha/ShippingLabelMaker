@@ -1,0 +1,86 @@
+<div class="container">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li [ngClass]="(activeCrumb == 'senderDetails')? 'breadcrumb-item active': 'breadcrumb-item'">Sender Address</li>
+      <li [ngClass]="(activeCrumb == 'receiverDetails')? 'breadcrumb-item active': 'breadcrumb-item'">Receiver Address
+      </li>
+      <li [ngClass]="(activeCrumb == 'weightDetails')? 'breadcrumb-item active': 'breadcrumb-item'">Weight</li>
+      <li [ngClass]="(activeCrumb == 'shippingDetails')? 'breadcrumb-item active': 'breadcrumb-item'">Shipping Option
+      </li>
+      <li [ngClass]="(activeCrumb == 'confirmation')? 'breadcrumb-item active': 'breadcrumb-item'">Confirmation</li>
+    </ol>
+  </nav>
+  <form [formGroup]="wizService.shippingLabelForm" (ngSubmit)="onSubmit(shippingLabelForm)">
+    <div id="senderDetailsWrapper" *ngIf="activeCrumb == 'senderDetails'">
+      <form [formGroup]="wizService.senderDetails">
+        <div class="form-group">
+          <label for="senderName">Name : </label> <input class="form-control" name="senderName"
+            formControlName="senderName" type="text"
+            [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderName.touched &&wizService.senderDetails.controls.senderName.errors }">
+          <div *ngIf="wizService.senderDetails.controls.senderName.errors" class="invalid-feedback">
+            Required
+          </div>
+          <label for="senderStreet">Street : </label> <input class="form-control" name="senderStreet"
+            formControlName="senderStreet" type="text">
+          <div class="row">
+            <div class="col-5">
+              <label for="senderCity">City : </label> <input class="form-control" name="senderCity"
+                formControlName="senderCity" type="text">
+            </div>
+            <div class="col-3">
+              <label for="senderState">State : </label> <input class="form-control" name="senderState"
+                formControlName="senderState" type="text">
+            </div>
+            <div class="col-4"> <label for="senderZip">Zip : </label> <input class="form-control" name="senderZip"
+                formControlName="senderZip" type="text"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="receiverDetails" *ngIf="activeCrumb == 'receiverDetails'">
+      <form [formGroup]="wizService.receiverDetails">
+        <div class="form-group">
+          <label for="receiverName">Name : </label> <input class="form-control" name="receiverName"
+            formControlName="receiverName" type="text">
+          <label for="receiverStreet">Street : </label> <input class="form-control" name="receiverStreet"
+            formControlName="receiverStreet" type="text">
+          <div class="row">
+            <div class="col-5">
+              <label for="receiverCity">City : </label> <input class="form-control" name="receiverCity"
+                formControlName="receiverCity" type="text">
+            </div>
+            <div class="col-3">
+              <label for="receiverState">State : </label> <input class="form-control" name="receiverState"
+                formControlName="receiverState" type="text">
+            </div>
+            <div class="col-4">
+              <label for="receiverZip">Zip : </label> <input class="form-control" name="receiverZip"
+                formControlName="receiverZip" type="text">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div id="weightDetails" *ngIf="activeCrumb == 'weightDetails'">
+      <label for="weight">Weight : </label> <input class="form-control" type="number" name="weight" min="0" value="0"
+        step="0.1" formControlName="weight">
+    </div>
+    <div id="shippingOption" *ngIf="activeCrumb == 'shippingDetails'">
+      <label for="shippingOption">Shipping Option</label>
+      <select class="form-control" formControlName="shippingOption" name="shippingOption">
+        <option *ngFor="let shippingOption of wizService.shippingOptions" [value]="shippingOption.value">
+          {{shippingOption.name}}
+        </option>
+      </select>
+    </div>
+    <div id="buttonSection">
+      <button type="button" class="btn btn-secondary" [disabled]="isPreviousDisabled()"
+        (click)="onPreviousClick()">Previous</button>
+      <button type="button" *ngIf="pageCount != crumbs.length -1" class="btn btn-primary next"
+        [disabled]="isNextDisabled()" (click)="onNextClick()">Next</button>
+      <button type="button" *ngIf="pageCount == crumbs.length -1" class="btn btn-primary submit"
+        [disabled]="isFormValid()" (click)="onSubmit()">Submit</button>
+    </div>
+
+  </form>
+</div>

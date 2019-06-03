@@ -1,0 +1,28 @@
+.active{
+    color: blue !important;
+}
+
+.breadcrumb-item {
+    color: gray;
+}
+
+.next {
+    margin-left: 15px;
+    width: 88px;
+}
+
+.submit {
+    margin-left: 15px;
+    width: 88px;
+}
+
+#buttonSection {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.invalid-field{
+    border: 1px solid red;
+}
+.invalid-feedback {
+    color: red;
+}
