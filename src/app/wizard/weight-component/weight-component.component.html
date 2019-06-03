@@ -1,7 +1,7 @@
 <form [formGroup]="control">
   <div class="form-group">
-    <label [attr.for]="listOfTags[0]">Weight : </label> <input class="form-control" type="number" name="weight" min="0"
-      value="0" step="0.1" [formControlName]="listOfTags[0]" [ngClass]="getClass(listOfTags[0])">
+    <label [attr.for]="listOfTags[0]">Weight (in grams) : </label> <input class="form-control" type="number"
+      name="weight" min="0" value="0" step="0.1" [formControlName]="listOfTags[0]" [ngClass]="getClass(listOfTags[0])">
     <div *ngIf="showInvalid(listOfTags[0])" class="invalid-feedback">
       This Field is Required
     </div>

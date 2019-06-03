@@ -32,19 +32,19 @@ export class WizardService {
         ];
         this.shippingLabelForm = new FormGroup({});
         this.senderDetails = new FormGroup({
-            senderName: new FormControl('', Validators.required),
-            senderStreet: new FormControl('', Validators.required),
-            senderCity: new FormControl('', Validators.required),
-            senderState: new FormControl('', Validators.required),
-            senderZip: new FormControl('', Validators.required)
+            Name: new FormControl('', Validators.required),
+            Street: new FormControl('', Validators.required),
+            City: new FormControl('', Validators.required),
+            State: new FormControl('', Validators.required),
+            Zip: new FormControl('', Validators.required)
         });
 
         this.receiverDetails = new FormGroup({
-            receiverName: new FormControl('', Validators.required),
-            receiverStreet: new FormControl('', Validators.required),
-            receiverCity: new FormControl('', Validators.required),
-            receiverState: new FormControl('', Validators.required),
-            receiverZip: new FormControl('', Validators.required)
+            Name: new FormControl('', Validators.required),
+            Street: new FormControl('', Validators.required),
+            City: new FormControl('', Validators.required),
+            State: new FormControl('', Validators.required),
+            Zip: new FormControl('', Validators.required)
         });
         this.weightDetails = new FormGroup({
             weight: new FormControl('', Validators.required)
@@ -53,9 +53,9 @@ export class WizardService {
         this.shippingDetails = new FormGroup({
             shippingOption: new FormControl('', Validators.required)
         });
-        this.shippingLabelForm.addControl('senderDetails', this.senderDetails);
-        this.shippingLabelForm.addControl('receiverDetails', this.receiverDetails);
-        this.shippingLabelForm.addControl('weight', this.weightDetails);
-        this.shippingLabelForm.addControl('shippingOption', this.shippingDetails);
+        this.shippingLabelForm.addControl('From', this.senderDetails);
+        this.shippingLabelForm.addControl('To', this.receiverDetails);
+        this.shippingLabelForm.addControl('Weight', this.weightDetails);
+        this.shippingLabelForm.addControl('Shipping Option', this.shippingDetails);
     }
 }

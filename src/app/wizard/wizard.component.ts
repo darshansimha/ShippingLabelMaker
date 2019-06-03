@@ -1,8 +1,8 @@
 import { ShippingOptionComponent } from './shipping-option/shipping-option.component';
 import { WeightComponentComponent } from './weight-component/weight-component.component';
 import { WizardService } from './wizardComponent.service';
-import { Component, OnInit, NgModule } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, NgModule } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NameAndAddressComponentComponent } from './name-and-address-component/name-and-address-component.component';
 @Component({
@@ -12,12 +12,23 @@ import { NameAndAddressComponentComponent } from './name-and-address-component/n
 })
 export class WizardComponent {
   pageCount: number = 0;
-  crumbs: Array<string> = ['senderDetails', 'receiverDetails', 'weightDetails', 'shippingDetails'];
+  crumbs: Array<string> = ['senderDetails', 'receiverDetails', 'weightDetails', 'shippingDetails', 'confirmation'];
   activeCrumb = this.crumbs[this.pageCount];
+  result: any;
+  readonly ShippingOption = {
+    ground: 1,
+    priority: 2
+  }
   constructor(public wizService: WizardService) { }
 
-  onSubmit($event) {
-    console.log(event);
+  onSubmit() {
+    this.activeCrumb = this.crumbs[this.crumbs.length - 1];
+    const shippingRate = 0.40;
+    let shippingCost = this.wizService.weightDetails.controls.weight.value * shippingRate *
+      (+this.wizService.shippingDetails.controls.shippingOption.value === this.ShippingOption.ground ? 1 : 1.5);
+    console.log(shippingCost);
+    this.result = this.wizService.shippingLabelForm.value;
+    this.result['shipping cost'] = shippingCost;
   }
   isNextDisabled(): boolean {
     if (this.validateCurrentForm(this.wizService[this.activeCrumb])) {
@@ -64,8 +75,27 @@ export class WizardComponent {
     return false;
   }
 
-  getFormControl(input) {
-    return Object.keys(this.wizService.weightDetails.controls)[0];
+  getFromDetails() {
+    if (this.result)
+      return JSON.stringify(this.result.From);
+  }
+  getToDetails() {
+    if (this.result)
+      return JSON.stringify(this.result.To);
+  }
+  getWeight() {
+    if (this.result)
+      return this.result.Weight.weight;
+  }
+  getShippingMethod() {
+    if (this.result) {
+      return this.result['Shipping Option'].shippingOption;
+    }
+  }
+  getCost() {
+    if (this.result) {
+      return this.result['shipping cost'];
+    }
   }
 }
 

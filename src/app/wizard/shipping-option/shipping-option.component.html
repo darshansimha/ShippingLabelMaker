@@ -3,7 +3,7 @@
     <label [attr.for]="listOfTags[0]">Shipping Option : </label>
     <select class="form-control" formControlName="shippingOption" name="shippingOption"
       [ngClass]="getClass(listOfTags[0])">
-      <option *ngFor="let shippingOption of service.shippingOptions" [value]="shippingOption.value">
+      <option *ngFor="let shippingOption of service.shippingOptions" [value]="shippingOption.name">
         {{shippingOption.name}}
       </option>
     </select>

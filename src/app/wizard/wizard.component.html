@@ -25,14 +25,20 @@
     <div id="shippingOption" *ngIf="activeCrumb == 'shippingDetails'">
       <app-shipping-option [control]="wizService.shippingDetails" [service]="wizService"></app-shipping-option>
     </div>
-    <div id="buttonSection">
+    <div id="buttonSection" *ngIf="activeCrumb != 'confirmation'">
       <button type="button" class="btn btn-secondary" [disabled]="isPreviousDisabled()"
         (click)="onPreviousClick()">Previous</button>
-      <button type="button" *ngIf="pageCount != crumbs.length -1" class="btn btn-primary next"
+      <button type="button" *ngIf="pageCount != crumbs.length -2" class="btn btn-primary next"
         [disabled]="isNextDisabled()" (click)="onNextClick()">Next</button>
-      <button type="button" *ngIf="pageCount == crumbs.length -1" class="btn btn-primary submit"
+      <button type="button" *ngIf="pageCount == crumbs.length -2" class="btn btn-primary submit"
         [disabled]="wizService.shippingLabelForm.invalid" (click)="onSubmit()">Submit</button>
     </div>
-
+    <div id="confirmationSection" *ngIf="activeCrumb == 'confirmation'">
+      <div>From : {{getFromDetails()}}</div> <br />
+      <div>To: {{getToDetails()}}</div> <br />
+      <div>Shipping Method: {{getShippingMethod()}}</div> <br />
+      <div>Weight: {{getWeight()}}</div> <br />
+      <div>Cost: {{getCost()}}</div> <br />
+    </div>
   </form>
 </div>
