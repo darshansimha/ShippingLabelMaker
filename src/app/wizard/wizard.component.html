@@ -20,16 +20,10 @@
       </app-name-and-address-component>
     </div>
     <div id="weightDetails" *ngIf="activeCrumb == 'weightDetails'">
-      <label for="weight">Weight : </label> <input class="form-control" type="number" name="weight" min="0" value="0"
-        step="0.1" formControlName="weight">
+      <app-weight-component [control]="wizService.weightDetails" [service]="wizService"></app-weight-component>
     </div>
     <div id="shippingOption" *ngIf="activeCrumb == 'shippingDetails'">
-      <label for="shippingOption">Shipping Option</label>
-      <select class="form-control" formControlName="shippingOption" name="shippingOption">
-        <option *ngFor="let shippingOption of wizService.shippingOptions" [value]="shippingOption.value">
-          {{shippingOption.name}}
-        </option>
-      </select>
+      <app-shipping-option [control]="wizService.shippingDetails" [service]="wizService"></app-shipping-option>
     </div>
     <div id="buttonSection">
       <button type="button" class="btn btn-secondary" [disabled]="isPreviousDisabled()"

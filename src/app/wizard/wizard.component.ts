@@ -1,3 +1,5 @@
+import { ShippingOptionComponent } from './shipping-option/shipping-option.component';
+import { WeightComponentComponent } from './weight-component/weight-component.component';
 import { WizardService } from './wizardComponent.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +17,7 @@ export class WizardComponent {
   constructor(public wizService: WizardService) { }
 
   onSubmit($event) {
-
+    console.log(event);
   }
   isNextDisabled(): boolean {
     if (this.validateCurrentForm(this.wizService[this.activeCrumb])) {
@@ -61,12 +63,16 @@ export class WizardComponent {
 
     return false;
   }
+
+  getFormControl(input) {
+    return Object.keys(this.wizService.weightDetails.controls)[0];
+  }
 }
 
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, FormsModule],
-  declarations: [WizardComponent, NameAndAddressComponentComponent],
+  declarations: [WizardComponent, NameAndAddressComponentComponent, WeightComponentComponent, ShippingOptionComponent],
   providers: [WizardService],
-  exports: [WizardComponent, NameAndAddressComponentComponent]
+  exports: [WizardComponent, NameAndAddressComponentComponent, WeightComponentComponent, ShippingOptionComponent]
 })
 export class WizardModule { }
