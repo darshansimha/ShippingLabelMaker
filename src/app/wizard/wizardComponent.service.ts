@@ -7,6 +7,8 @@ export class WizardService {
     shippingLabelForm: FormGroup;
     senderDetails: FormGroup;
     receiverDetails: FormGroup;
+    weightDetails: FormGroup;
+    shippingDetails: FormGroup;
     shippingOptions: Array<any>;
     constructor() {
         this.initializeForm();
@@ -44,9 +46,16 @@ export class WizardService {
             receiverState: new FormControl('', Validators.required),
             receiverZip: new FormControl('', Validators.required)
         });
+        this.weightDetails = new FormGroup({
+            weight: new FormControl('', Validators.required)
+        });
+
+        this.shippingDetails = new FormGroup({
+            shippingOption: new FormControl('', Validators.required)
+        });
         this.shippingLabelForm.addControl('senderDetails', this.senderDetails);
         this.shippingLabelForm.addControl('receiverDetails', this.receiverDetails);
-        this.shippingLabelForm.addControl('weight', new FormControl('', Validators.required));
-        this.shippingLabelForm.addControl('shippingOption', new FormControl('', Validators.required));
+        this.shippingLabelForm.addControl('weight', this.weightDetails);
+        this.shippingLabelForm.addControl('shippingOption', this.shippingDetails);
     }
 }

@@ -17,7 +17,7 @@ export class WizardComponent {
 
   }
   isNextDisabled(): boolean {
-    if (this.pageCount == this.crumbs.length - 1) {
+    if (this.validateCurrentForm(this.wizService[this.activeCrumb])) {
       return true;
     } else {
       return false;
@@ -33,9 +33,6 @@ export class WizardComponent {
   }
 
   onPreviousClick() {
-    if (this.wizService.shippingLabelForm.invalid) {
-      return;
-    }
     if (this.pageCount != 0) {
       this.pageCount--;
     }
@@ -43,7 +40,7 @@ export class WizardComponent {
   }
 
   onNextClick() {
-    if (this.wizService.shippingLabelForm.invalid) {
+    if (this.wizService[this.activeCrumb].invalid) {
       return;
     }
     if (this.pageCount != this.crumbs.length - 1) {
@@ -52,8 +49,16 @@ export class WizardComponent {
     this.activeCrumb = this.crumbs[this.pageCount]
   }
 
-  isFormValid() {
+  validateCurrentForm(formData: FormGroup): boolean {
+    let controlValues = Object.values(formData.controls);
 
+    for (let i = 0; i < controlValues.length; i++) {
+      if (controlValues[i].errors) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
 

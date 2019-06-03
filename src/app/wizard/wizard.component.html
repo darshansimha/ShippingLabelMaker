@@ -17,11 +17,19 @@
           <label for="senderName">Name : </label> <input class="form-control" name="senderName"
             formControlName="senderName" type="text"
             [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderName.touched &&wizService.senderDetails.controls.senderName.errors }">
-          <div *ngIf="wizService.senderDetails.controls.senderName.errors" class="invalid-feedback">
-            Required
+          <div
+            *ngIf="wizService.senderDetails.controls.senderName.touched &&wizService.senderDetails.controls.senderName.errors"
+            class="invalid-feedback">
+            This Field is Required
           </div>
-          <label for="senderStreet">Street : </label> <input class="form-control" name="senderStreet"
-            formControlName="senderStreet" type="text">
+          <label for="senderStreet">Street : </label>
+          <input class="form-control" name="senderStreet" formControlName="senderStreet" type="text"
+            [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderStreet.touched &&wizService.senderDetails.controls.senderStreet.errors }">
+          <div
+            *ngIf="wizService.senderDetails.controls.senderStreet.touched &&wizService.senderDetails.controls.senderStreet.errors"
+            class="invalid-feedback">
+            This Field is Required
+          </div>
           <div class="row">
             <div class="col-5">
               <label for="senderCity">City : </label> <input class="form-control" name="senderCity"
@@ -79,7 +87,7 @@
       <button type="button" *ngIf="pageCount != crumbs.length -1" class="btn btn-primary next"
         [disabled]="isNextDisabled()" (click)="onNextClick()">Next</button>
       <button type="button" *ngIf="pageCount == crumbs.length -1" class="btn btn-primary submit"
-        [disabled]="isFormValid()" (click)="onSubmit()">Submit</button>
+        [disabled]="wizService.shippingLabelForm.invalid" (click)="onSubmit()">Submit</button>
     </div>
 
   </form>
