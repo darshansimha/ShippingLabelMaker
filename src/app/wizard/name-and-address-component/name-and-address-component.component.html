@@ -1,0 +1,37 @@
+<form [formGroup]="control">
+  <div class="form-group">
+    <label [attr.for]="listOfTags[0]">Name : </label> <input class="form-control" [attr.name]="listOfTags[0]"
+      [formControlName]="listOfTags[0]" type="text" [ngClass]="getClass(listOfTags[0])">
+    <div *ngIf="showInvalid(listOfTags[0])" class="invalid-feedback">
+      This Field is Required
+    </div>
+    <label [attr.for]="listOfTags[1]">Street : </label>
+    <input class="form-control" [attr.name]="listOfTags[1]" [formControlName]="listOfTags[1]" type="text"
+      [ngClass]="getClass(listOfTags[1])">
+    <div *ngIf="showInvalid(listOfTags[1])" class="invalid-feedback">
+      This Field is Required
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <label [attr.for]="listOfTags[2]">City : </label> <input class="form-control" [attr.name]="listOfTags[2]"
+          [formControlName]="listOfTags[2]" type="text" [ngClass]="getClass(listOfTags[2])">
+        <div *ngIf="showInvalid(listOfTags[2])" class="invalid-feedback">
+          This Field is Required
+        </div>
+      </div>
+      <div class="col-3">
+        <label [attr.for]="listOfTags[3]">State : </label> <input class="form-control" [attr.name]="listOfTags[3]"
+          [formControlName]="listOfTags[3]" type="text" [ngClass]="getClass(listOfTags[3])">
+        <div *ngIf="showInvalid(listOfTags[3])" class="invalid-feedback">
+          This Field is Required
+        </div>
+      </div>
+      <div class="col-4"> <label [attr.for]="listOfTags[4]">Zip : </label> <input class="form-control"
+          [attr.name]="listOfTags[4]" [formControlName]="listOfTags[4]" type="text" [ngClass]="getClass(listOfTags[4])">
+        <div *ngIf="showInvalid(listOfTags[4])" class="invalid-feedback">
+          This Field is Required
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

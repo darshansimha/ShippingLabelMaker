@@ -12,74 +12,12 @@
   </nav>
   <form [formGroup]="wizService.shippingLabelForm" (ngSubmit)="onSubmit(shippingLabelForm)">
     <div id="senderDetailsWrapper" *ngIf="activeCrumb == 'senderDetails'">
-      <form [formGroup]="wizService.senderDetails">
-        <div class="form-group">
-          <label for="senderName">Name : </label> <input class="form-control" name="senderName"
-            formControlName="senderName" type="text"
-            [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderName.touched &&wizService.senderDetails.controls.senderName.errors }">
-          <div
-            *ngIf="wizService.senderDetails.controls.senderName.touched &&wizService.senderDetails.controls.senderName.errors"
-            class="invalid-feedback">
-            This Field is Required
-          </div>
-          <label for="senderStreet">Street : </label>
-          <input class="form-control" name="senderStreet" formControlName="senderStreet" type="text"
-            [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderStreet.touched &&wizService.senderDetails.controls.senderStreet.errors }">
-          <div
-            *ngIf="wizService.senderDetails.controls.senderStreet.touched &&wizService.senderDetails.controls.senderStreet.errors"
-            class="invalid-feedback">
-            This Field is Required
-          </div>
-          <div class="row">
-            <div class="col-5">
-              <label for="senderCity">City : </label> <input class="form-control" name="senderCity"
-                formControlName="senderCity" type="text"
-                [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderCity.touched &&wizService.senderDetails.controls.senderCity.errors }">
-              <div
-                *ngIf="wizService.senderDetails.controls.senderCity.touched &&wizService.senderDetails.controls.senderCity.errors"
-                class="invalid-feedback">
-                This Field is Required
-              </div>
-            </div>
-            <div class="col-3">
-              <label for="senderState">State : </label> <input class="form-control" name="senderState"
-                formControlName="senderState" type="text"
-                [ngClass]="{ 'invalid-field': wizService.senderDetails.controls.senderState.touched &&wizService.senderDetails.controls.senderState.errors }">
-              <div
-                *ngIf="wizService.senderDetails.controls.senderState.touched &&wizService.senderDetails.controls.senderState.errors"
-                class="invalid-feedback">
-                This Field is Required
-              </div>
-            </div>
-            <div class="col-4"> <label for="senderZip">Zip : </label> <input class="form-control" name="senderZip"
-                formControlName="senderZip" type="text"></div>
-          </div>
-        </div>
-      </form>
+      <app-name-and-address-component [control]="wizService.senderDetails" [service]="wizService">
+      </app-name-and-address-component>
     </div>
     <div id="receiverDetails" *ngIf="activeCrumb == 'receiverDetails'">
-      <form [formGroup]="wizService.receiverDetails">
-        <div class="form-group">
-          <label for="receiverName">Name : </label> <input class="form-control" name="receiverName"
-            formControlName="receiverName" type="text">
-          <label for="receiverStreet">Street : </label> <input class="form-control" name="receiverStreet"
-            formControlName="receiverStreet" type="text">
-          <div class="row">
-            <div class="col-5">
-              <label for="receiverCity">City : </label> <input class="form-control" name="receiverCity"
-                formControlName="receiverCity" type="text">
-            </div>
-            <div class="col-3">
-              <label for="receiverState">State : </label> <input class="form-control" name="receiverState"
-                formControlName="receiverState" type="text">
-            </div>
-            <div class="col-4">
-              <label for="receiverZip">Zip : </label> <input class="form-control" name="receiverZip"
-                formControlName="receiverZip" type="text">
-            </div>
-          </div>
-        </div>
-      </form>
+      <app-name-and-address-component [control]="wizService.receiverDetails" [service]="wizService">
+      </app-name-and-address-component>
     </div>
     <div id="weightDetails" *ngIf="activeCrumb == 'weightDetails'">
       <label for="weight">Weight : </label> <input class="form-control" type="number" name="weight" min="0" value="0"

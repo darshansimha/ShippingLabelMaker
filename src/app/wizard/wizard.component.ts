@@ -2,6 +2,7 @@ import { WizardService } from './wizardComponent.service';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NameAndAddressComponentComponent } from './name-and-address-component/name-and-address-component.component';
 @Component({
   selector: 'app-wizard',
   templateUrl: './wizard.component.html',
@@ -64,8 +65,8 @@ export class WizardComponent {
 
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, FormsModule],
-  declarations: [WizardComponent],
+  declarations: [WizardComponent, NameAndAddressComponentComponent],
   providers: [WizardService],
-  exports: [WizardComponent]
+  exports: [WizardComponent, NameAndAddressComponentComponent]
 })
 export class WizardModule { }
